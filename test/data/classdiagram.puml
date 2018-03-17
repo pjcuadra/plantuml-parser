@@ -1,0 +1,26 @@
+@startuml
+
+class ClassTest {
+  +number_1: int
+  -number_2: float
+}
+
+class ClassTest2 {
+  +number_1: int
+  -number_2: float
+  int number3
+  +int number4
+}
+
+class ClassTest3 {
+  +void test()
+  +void test2(int param1)
+}
+
+ClassTest --> ClassTest2
+ClassTest <-- ClassTest2
+ClassTest -- ClassTest2
+ClassTest --* ClassTest2
+ClassTest <--> ClassTest2 : test text
+
+@enduml

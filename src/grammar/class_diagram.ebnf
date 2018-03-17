@@ -1,0 +1,29 @@
+start: "@startuml" class* "@enduml"
+
+class: "class" class_name "{" (attribute | method)* "}"
+
+variable: (visibility? var ":" type)
+        | (visibility? type var)
+
+?attribute: variable
+
+param_list: [variable ("," variable)*]
+
+method: (visibility? method_name "(" param_list ")" ":" type)
+      | (visibility? type method_name "(" param_list ")")
+
+visibility: "+" -> public
+          | "-" -> private
+          | "#" -> protected
+          | "~" -> package
+
+type: CNAME
+var: CNAME
+attribute_name: CNAME
+method_name: CNAME
+class_name: CNAME
+
+%import common.CNAME
+%import common.ESCAPED_STRING
+%import common.WS
+%ignore WS
