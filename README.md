@@ -1,6 +1,6 @@
 # PlatUML Parser
 
-This is a Proof-of-Concept a PlantUML parser. This still WIP, and support is
+This is a Proof-of-Concept PlantUML parser. This is still WIP, and support is
 being added incrementally. PlantUML is being parsed using LARK and described in
 EBNF.
 
