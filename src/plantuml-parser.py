@@ -38,7 +38,7 @@ if __name__ == '__main__':
     myargs = getopts(argv)
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    grammar_file_path = os.path.join(dir_path, "grammar", "main.ebnf")
+    grammar_file_path = os.path.join(dir_path, "grammar", "grammar.ebnf")
     f = open(grammar_file_path)
 
     parser = Lark(f.read())
