@@ -36,6 +36,9 @@ def test_class():
     diagrams_path = os.path.join(test_data_path, 'class_diagram')
 
     for root, dirs, files in os.walk(diagrams_path):
+        files.remove("README")
         for filename in files:
+            print(f"Execute " + filename)
             f = open(os.path.join(diagrams_path, filename))
             parser.parse(f.read())
+            

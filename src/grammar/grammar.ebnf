@@ -35,7 +35,8 @@ text_field: "{field}" field_text
 
 param_list: [variable ("," variable)*]
 
-function: method_name "(" param_list ")" ":" type
+function: method_name "(" param_list ")" 
+        | method_name "("param_list")" ":" type
         | type method_name "(" param_list ")"
 
 text_method: "{method}" method_text
