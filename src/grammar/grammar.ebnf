@@ -51,7 +51,13 @@ att_scope: "{static}" -> static
          | "{abstract}" -> abstract
 
 // Relationships
-relationship: arrow_end_1 cardinality? arrow_head_1 arrow_body arrow_head_2 cardinality? arrow_end_2 [":" relation_text]
+relationship: ( relationship_class | relationship_state) 
+
+relationship_class: arrow_end_1 cardinality? arrow_head_1 arrow_body arrow_head_2 cardinality? arrow_end_2 [":" relation_text]
+
+relationship_state: initial_state "-->" arrow_end_2
+                  | arrow_end_1 "-->" final_state
+                  | arrow_end_1 [":" relation_text]
 
 // Arrow Heads
 !arrow_head_1: "<"
@@ -98,6 +104,8 @@ visibility: "+" -> public
           | "#" -> protected
           | "~" -> package
 
+initial_state: final_state
+final_state: "[*]"
 arrow_end_1: CNAME
 arrow_end_2: CNAME
 type: CNAME
