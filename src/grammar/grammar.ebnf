@@ -55,9 +55,17 @@ relationship: ( relationship_class | relationship_state)
 
 relationship_class: arrow_end_1 cardinality? arrow_head_1 arrow_body arrow_head_2 cardinality? arrow_end_2 [":" relation_text]
 
-relationship_state: initial_state "-->" arrow_end_2
-                  | arrow_end_1 "-->" final_state
-                  | arrow_end_1 [":" relation_text]
+// Statemachine
+relationship_state: state
+                  | substate
+
+substate: "state" arrow_end_1 "{" state* "}"
+
+state: initial_state arrow_body ">" arrow_end_2
+     | arrow_end_1 arrow_body ">" arrow_end_2 [":" relation_text]
+     | arrow_end_1 arrow_body ">" final_state
+     | arrow_end_1 [":" relation_text]
+     | substate
 
 // Arrow Heads
 !arrow_head_1: "<"
