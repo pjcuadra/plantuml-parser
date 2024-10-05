@@ -55,9 +55,20 @@ relationship: ( relationship_class | relationship_state)
 
 relationship_class: arrow_end_1 cardinality? arrow_head_1 arrow_body arrow_head_2 cardinality? arrow_end_2 [":" relation_text]
 
-relationship_state: initial_state "-->" arrow_end_2
-                  | arrow_end_1 "-->" final_state
-                  | arrow_end_1 [":" relation_text]
+// Statemachine
+relationship_state: state
+                  | substate
+                  | fork_join
+
+substate: "state" arrow_end_1 "{" state* "}"
+
+state: initial_state arrow_body ">" arrow_end_2
+     | arrow_end_1 arrow_body ">" arrow_end_2 [":" relation_text]
+     | arrow_end_1 arrow_body ">" final_state
+     | arrow_end_1 [":" relation_text]
+     | substate
+
+fork_join: "state" state_name stereotype?
 
 // Arrow Heads
 !arrow_head_1: "<"
@@ -115,6 +126,7 @@ svalue: CNAME|WORD|ESCAPED_STRING|DIGIT
 attribute_name: CNAME
 method_name: CNAME
 class_name: CNAME
+state_name: CNAME
 stereotype_name: CNAME
 relation_text: (WORD|ESCAPED_STRING|DIGIT|">"|"<")*
 field_text: (WORD|ESCAPED_STRING|DIGIT)*
