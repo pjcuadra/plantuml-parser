@@ -25,7 +25,7 @@ def getopts(argvalues):
     """Function parsing command line options"""
     opts = {}  # Empty dictionary to store key-value pairs.
     while argvalues:  # While there are arguments left to parse...
-        if argvalues[0][0] is '-':  # Found a "-name value" pair.
+        if argvalues[0][0] == '-':  # Found a "-name value" pair.
             if len(argvalues) > 1:
                 if argvalues[1][0] != '-':
                     opts[argvalues[0]] = argvalues[1]

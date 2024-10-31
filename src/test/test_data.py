@@ -56,4 +56,4 @@ def test_state():
         for filename in files:
             f = open(os.path.join(diagrams_path, filename), encoding="utf-8")
             parser.parse(f.read())
-            
+                     
