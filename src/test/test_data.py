@@ -19,10 +19,10 @@ test_data_path = os.path.join(dir_path, 'data')
 
 
 def get_parser():
-
+    """Factory method for starting parser"""
     grammar_file_path = os.path.join(dir_path, "..", "grammar", "grammar.ebnf")
 
-    f = open(grammar_file_path)
+    f = open(grammar_file_path, encoding="utf-8")
 
     parser = Lark(f.read())
 
@@ -30,27 +30,26 @@ def get_parser():
 
 
 def test_class():
-
+    """Fuction for testing all plantuml class diagrams located in class_diagram folder"""
     parser = get_parser()
 
     diagrams_path = os.path.join(test_data_path, 'class_diagram')
 
-    for root, dirs, files in os.walk(diagrams_path):
+    for _, _, files in os.walk(diagrams_path):
         files.remove("README")
         for filename in files:
-            f = open(os.path.join(diagrams_path, filename))
+            f = open(os.path.join(diagrams_path, filename), encoding="utf-8")
             parser.parse(f.read())
 
 
 def test_state():
-
+    """Fuction for testing all plantuml class diagrams located in class_diagram folder"""
     parser = get_parser()
 
     diagrams_path = os.path.join(test_data_path, 'state_diagram')
 
-    for root, dirs, files in os.walk(diagrams_path):
+    for _, _, files in os.walk(diagrams_path):
         for filename in files:
-            print(f"Execute " + filename)
-            f = open(os.path.join(diagrams_path, filename))
+            f = open(os.path.join(diagrams_path, filename), encoding="utf-8")
             parser.parse(f.read())
             
