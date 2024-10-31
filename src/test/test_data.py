@@ -1,3 +1,7 @@
+"""Test execution for plantuml parser"""
+
+# Copyright 2024 René Fischer - renefischer@fischer-homenet.de
+#
 # Copyright 2018 Pedro Cuadra - pjcuadra@gmail.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

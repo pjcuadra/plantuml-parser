@@ -1,3 +1,5 @@
+"""Modulefor parsing plantuml diagrams to an AST"""
+
 # Copyright 2024 René Fischer - renefischer@fischer-homenet.de
 #
 # Copyright 2018 Pedro Cuadra - pjcuadra@gmail.com
@@ -19,21 +21,21 @@ import logging
 from lark import Lark
 
 
-def getopts(argv):
+def getopts(argvalues):
     """Function parsing command line options"""
     opts = {}  # Empty dictionary to store key-value pairs.
-    while argv:  # While there are arguments left to parse...
-        if argv[0][0] is '-':  # Found a "-name value" pair.
-            if len(argv) > 1:
-                if argv[1][0] != '-':
-                    opts[argv[0]] = argv[1]
+    while argvalues:  # While there are arguments left to parse...
+        if argvalues[0][0] is '-':  # Found a "-name value" pair.
+            if len(argvalues) > 1:
+                if argvalues[1][0] != '-':
+                    opts[argvalues[0]] = argvalues[1]
                 else:
-                    opts[argv[0]] = True
-            elif len(argv) == 1:
-                opts[argv[0]] = True
+                    opts[argvalues[0]] = True
+            elif len(argvalues) == 1:
+                opts[argvalues[0]] = True
 
         # Reduce the argument list by copying it starting from index 1.
-        argv = argv[1:]
+        argvalues = argvalues[1:]
     return opts
 
 
