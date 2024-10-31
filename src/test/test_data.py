@@ -42,8 +42,8 @@ def test_class():
     for _, _, files in os.walk(diagrams_path):
         files.remove("README")
         for filename in files:
-            f = open(os.path.join(diagrams_path, filename), encoding="utf-8")
-            parser.parse(f.read())
+            with open(os.path.join(diagrams_path, filename), encoding="utf-8") as file:
+                parser.parse(file.read())
 
 
 def test_state():
@@ -54,6 +54,5 @@ def test_state():
 
     for _, _, files in os.walk(diagrams_path):
         for filename in files:
-            f = open(os.path.join(diagrams_path, filename), encoding="utf-8")
-            parser.parse(f.read())
-                     
+            with open(os.path.join(diagrams_path, filename), encoding="utf-8") as file:
+                parser.parse(file.read())
