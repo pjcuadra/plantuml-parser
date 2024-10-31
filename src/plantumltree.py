@@ -56,4 +56,3 @@ if __name__ == '__main__':
 
     if '-v' in myargs:
         logging.basicConfig(level=logging.INFO)
-  
