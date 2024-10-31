@@ -45,16 +45,14 @@ if __name__ == '__main__':
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     grammar_file_path = os.path.join(dir_path, "grammar", "grammar.ebnf")
-    f = open(grammar_file_path, encoding="utf-8")
+    with open(grammar_file_path, encoding="utf-8") as grammar_file:
+        parser = Lark(grammar_file.read())
 
-    parser = Lark(f.read())
-
-    if '-i' in myargs:
-        f = open(myargs['-i'], encoding="utf-8")
-    else:
-        sys.exit(1)
+        if '-i' in myargs:
+            with open(myargs['-i'], encoding="utf-8") as puml:
+                print(parser.parse(puml.read()))
+        else:
+            sys.exit(1)
 
     if '-v' in myargs:
-        logging.basicConfig(level=logging.INFO)
-
-    print(parser.parse(f.read()))
+        logging.basicConfig(level=logging.INFO)   
