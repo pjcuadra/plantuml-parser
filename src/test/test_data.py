@@ -1,3 +1,7 @@
+"""Test execution for plantuml parser"""
+
+# Copyright 2024 René Fischer - renefischer@fischer-homenet.de
+#
 # Copyright 2018 Pedro Cuadra - pjcuadra@gmail.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,38 +23,35 @@ test_data_path = os.path.join(dir_path, 'data')
 
 
 def get_parser():
-
+    """Factory method for starting parser"""
     grammar_file_path = os.path.join(dir_path, "..", "grammar", "grammar.ebnf")
 
-    f = open(grammar_file_path)
-
-    parser = Lark(f.read())
+    with open(grammar_file_path, encoding="utf-8") as grammar_file:
+        parser = Lark(grammar_file.read())
 
     return parser
 
 
 def test_class():
-
+    """Fuction for testing all plantuml class diagrams located in class_diagram folder"""
     parser = get_parser()
 
     diagrams_path = os.path.join(test_data_path, 'class_diagram')
 
-    for root, dirs, files in os.walk(diagrams_path):
+    for _, _, files in os.walk(diagrams_path):
         files.remove("README")
         for filename in files:
-            f = open(os.path.join(diagrams_path, filename))
-            parser.parse(f.read())
+            with open(os.path.join(diagrams_path, filename), encoding="utf-8") as file:
+                parser.parse(file.read())
 
 
 def test_state():
-
+    """Fuction for testing all plantuml class diagrams located in class_diagram folder"""
     parser = get_parser()
 
     diagrams_path = os.path.join(test_data_path, 'state_diagram')
 
-    for root, dirs, files in os.walk(diagrams_path):
+    for _, _, files in os.walk(diagrams_path):
         for filename in files:
-            print(f"Execute " + filename)
-            f = open(os.path.join(diagrams_path, filename))
-            parser.parse(f.read())
-            
+            with open(os.path.join(diagrams_path, filename), encoding="utf-8") as file:
+                parser.parse(file.read())
