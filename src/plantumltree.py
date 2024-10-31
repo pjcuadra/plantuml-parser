@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from sys import argv
+import sys
 import os
 import logging
 from lark import Lark
@@ -51,7 +52,7 @@ if __name__ == '__main__':
     if '-i' in myargs:
         f = open(myargs['-i'], encoding="utf-8")
     else:
-        exit(1)
+        sys.exit(1)
 
     if '-v' in myargs:
         logging.basicConfig(level=logging.INFO)
