@@ -55,4 +55,5 @@ if __name__ == '__main__':
             sys.exit(1)
 
     if '-v' in myargs:
-        logging.basicConfig(level=logging.INFO)   
+        logging.basicConfig(level=logging.INFO)
+  
