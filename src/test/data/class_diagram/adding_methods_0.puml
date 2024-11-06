@@ -1,7 +1,7 @@
 @startuml
 Object <|-- ArrayList
 
-Object : equals()
+Object : equals( )
 ArrayList : Object[] elementData
 ArrayList : size()
 
